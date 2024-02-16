@@ -16,8 +16,7 @@ Resources:
           InstanceCount: 2
           InstanceType: m5.xlarge
           Name: CORE
-          Ec2SubnetIds: 
-            - "subnet-024446bcf36b23364"
+        Ec2SubnetId: "subnet-024446bcf36b23364"  # Define the subnet for instances
         Ec2KeyName: "Ashishkey"
       JobFlowRole: "EMR_EC2_DefaultRole"
       ServiceRole: "EMR_DefaultRole"
