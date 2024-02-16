@@ -18,7 +18,7 @@ Resources:
           Name: CORE
         Ec2SubnetIds: 
           - "subnet-01b68b68cd8eb4f82"
-        Ec2KeyName: "onekey"
+        Ec2KeyName: "Ashishkey"
       JobFlowRole: "EMR_EC2_DefaultRole"
       ServiceRole: "EMR_DefaultRole"
           
