@@ -16,8 +16,8 @@ Resources:
           InstanceCount: 2
           InstanceType: m5.xlarge
           Name: CORE
-        Ec2SubnetIds: 
-          - "subnet-01b68b68cd8eb4f82"
+          Ec2SubnetIds: 
+            - "subnet-024446bcf36b23364"
         Ec2KeyName: "Ashishkey"
       JobFlowRole: "EMR_EC2_DefaultRole"
       ServiceRole: "EMR_DefaultRole"
@@ -40,7 +40,8 @@ Resources:
           - s3://finalproject1-a/spark-sql-kafka-0-10_2.12-3.2.1.jar
           - s3://finalproject1-a/kafka-clients-2.1.1.jar
       JobFlowId: !Ref MyEMRCluster
-  
+      ServiceRole: "EMR_DefaultRole"  # Specify a service role for the step
+
   GlueWorkflow:
     Type: AWS::Glue::Workflow
     Properties:
@@ -60,16 +61,8 @@ Resources:
 
   MyEMRTrigger1:
     Type: AWS::Glue::Trigger
-    Properties:
-      Actions:
-        - JobName: !Ref MySparkStep
-      Description: Triggers the Spark job
-      Name: MyEMRTrigger1
-      Type: ON_DEMAND
-      WorkflowName: prj-workflow
     DependsOn:
-      - GlueWorkflow
-      - MyEMRTrigger
+      - MySparkStep
     Properties:
       Actions:
         - JobName: !Ref MySparkStep
