@@ -20,7 +20,7 @@ Resources:
         Ec2KeyName: "Ashishkey"
       JobFlowRole: "EMR_EC2_DefaultRole"
       ServiceRole: "EMR_DefaultRole"
-          
+
   MySparkStep:
     Type: AWS::EMR::Step
     Properties:
@@ -68,3 +68,13 @@ Resources:
       Name: MyEMRTrigger1
       Type: ON_DEMAND
       WorkflowName: prj-workflow
+
+  MyGlueCrawler:
+    Type: AWS::Glue::Crawler
+    Properties:
+      Name: MyGlueCrawler
+      Role: arn:aws:iam::123456789012:role/service-role/AWSGlueServiceRole
+      DatabaseName: MyDatabase
+      Targets:
+        S3Targets:
+          - Path: s3://finalproject1-a/project/20.csv
