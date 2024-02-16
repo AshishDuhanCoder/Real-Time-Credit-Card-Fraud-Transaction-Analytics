@@ -67,5 +67,4 @@ Resources:
       Description: Triggers the Spark job
       Name: MyEMRTrigger1
       Type: ON_DEMAND
-      Role: arn:aws:iam::963746058908:role/LabRole
       WorkflowName: prj-workflow
