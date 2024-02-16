@@ -73,7 +73,6 @@ Resources:
     Type: AWS::Glue::Crawler
     Properties:
       Name: MyGlueCrawler
-      Role: arn:aws:iam::123456789012:role/service-role/AWSGlueServiceRole
       DatabaseName: MyDatabase
       Targets:
         S3Targets:
