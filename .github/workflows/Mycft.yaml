@@ -39,7 +39,6 @@ Resources:
           - s3://finalproject1-a/spark-sql-kafka-0-10_2.12-3.2.1.jar
           - s3://finalproject1-a/kafka-clients-2.1.1.jar
       JobFlowId: !Ref MyEMRCluster
-      ServiceRole: "EMR_DefaultRole"  # Specify a service role for the step
 
   GlueWorkflow:
     Type: AWS::Glue::Workflow
