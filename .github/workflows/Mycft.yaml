@@ -16,11 +16,12 @@ Resources:
           InstanceCount: 2
           InstanceType: m5.xlarge
           Name: CORE
-        Ec2SubnetId: "subnet-024446bcf36b23364"  # Define the subnet for instances
-        Ec2KeyName: "Ashishkey"
+        Ec2SubnetIds: 
+          - subnet-01b68b68cd8eb4f82
+        Ec2KeyName: Ashishkey
       JobFlowRole: "EMR_EC2_DefaultRole"
       ServiceRole: "EMR_DefaultRole"
-
+          
   MySparkStep:
     Type: AWS::EMR::Step
     Properties:
@@ -34,46 +35,20 @@ Resources:
           - cluster
           - --class
           - org.apache.spark.deploy.Mysparkob
+          - --packages
+          - org.apache.spark:spark-sql-kafka-0-10_2.12:3.2.1
           - s3://finalproject1-a/a.py
-          - --jars
-          - s3://finalproject1-a/spark-sql-kafka-0-10_2.12-3.2.1.jar
-          - s3://finalproject1-a/kafka-clients-2.1.1.jar
       JobFlowId: !Ref MyEMRCluster
 
-  GlueWorkflow:
-    Type: AWS::Glue::Workflow
-    Properties:
-      Description: ETL Job
-      MaxConcurrentRuns: 1
-      Name: prj-workflow
-
-  MyEMRTrigger:
-    Type: AWS::Glue::Trigger
-    Properties:
-      Actions:
-        - JobName: !Ref MyEMRCluster
-      Description: Triggers the EMR job
-      Name: MyEMRTrigger
-      Type: ON_DEMAND
-      WorkflowName: prj-workflow
-
-  MyEMRTrigger1:
-    Type: AWS::Glue::Trigger
+  DataCrawler:
+    Type: AWS::Glue::Crawler
     DependsOn:
+      - MyEMRCluster
       - MySparkStep
     Properties:
-      Actions:
-        - JobName: !Ref MySparkStep
-      Description: Triggers the Spark job
-      Name: MyEMRTrigger1
-      Type: ON_DEMAND
-      WorkflowName: prj-workflow
-
-  MyGlueCrawler:
-    Type: AWS::Glue::Crawler
-    Properties:
-      Name: MyGlueCrawler
-      DatabaseName: MyDatabase
+      Name: data-crawler
+      DatabaseName: default
       Targets:
         S3Targets:
-          - Path: s3://finalproject1-a/project/20.csv
+          - Path: s3://finalproject1-b/sparkwrite
+      Role: arn:aws:iam::963746058908:role/LabRole
