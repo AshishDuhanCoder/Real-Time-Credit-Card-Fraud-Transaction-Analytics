@@ -53,5 +53,5 @@ Resources:
       DatabaseName: default
       Targets:
         S3Targets:
-          - Path: s3://finalproject1-b/sparkwrite
+          - Path: s3://finalproject1-b/sparkwrite/
       Role: arn:aws:iam::185675419520:role/LabRole
