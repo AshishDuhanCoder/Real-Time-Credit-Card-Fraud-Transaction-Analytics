@@ -23,7 +23,7 @@ jobs:
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           AWS_DEFAULT_REGION: us-east-1
           AWS_SESSION_TOKEN: ${{ secrets.AWS_SESSION_TOKEN }}
-          EC2_KEY_PAIR_PATH: s3://requiredfiles2323/onekey.pem
+          EC2_KEY_PAIR_PATH: s3://finalproject1-a/Ashishkey.pem
           
       # - name: Start EMR cluster
       #   run: |
