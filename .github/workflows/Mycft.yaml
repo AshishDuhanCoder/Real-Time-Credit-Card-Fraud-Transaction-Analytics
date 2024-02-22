@@ -54,4 +54,4 @@ Resources:
       Targets:
         S3Targets:
           - Path: s3://finalproject1-b/sparkwrite
-      Role: arn:aws:iam::963746058908:role/LabRole
+      Role: arn:aws:iam::185675419520:role/LabRole
