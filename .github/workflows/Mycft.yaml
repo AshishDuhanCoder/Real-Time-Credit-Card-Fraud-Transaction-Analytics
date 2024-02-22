@@ -17,7 +17,7 @@ Resources:
           InstanceType: m5.xlarge
           Name: CORE
         Ec2SubnetIds: 
-          - subnet-01b68b68cd8eb4f82
+          - subnet-024446bcf36b23364
         Ec2KeyName: Ashishkey
       JobFlowRole: "EMR_EC2_DefaultRole"
       ServiceRole: "EMR_DefaultRole"
