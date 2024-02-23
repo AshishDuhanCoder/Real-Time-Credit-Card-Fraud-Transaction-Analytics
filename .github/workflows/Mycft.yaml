@@ -9,13 +9,11 @@ Resources:
         - Name: Spark
       Instances:
         MasterInstanceGroup:
-          InstanceCount: 1  
+          InstanceCount: 1
           InstanceType: m5.xlarge
-          Name: MASTER
         CoreInstanceGroup: 
           InstanceCount: 2
           InstanceType: m5.xlarge
-          Name: CORE
         Ec2SubnetIds: 
           - subnet-024446bcf36b23364
         Ec2KeyName: Ashishkey
@@ -54,4 +52,4 @@ Resources:
       Targets:
         S3Targets:
           - Path: s3://finalproject1-b/sparkwrite/
-      Role: arn:aws:iam::185675419520:role/LabRole
+      Role: "arn:aws:iam::185675419520:role/LabRole"
