@@ -13,9 +13,6 @@ spark = SparkSession.builder \
 
 spark.sparkContext.setLogLevel("ERROR")
 
-
-
-
 class DistanceCalculator:
     @staticmethod
     def calculate_distance(lat1, lon1, lat2, lon2):
@@ -39,10 +36,6 @@ class DistanceCalculator:
         # Distance in kilometers
         distance = R * c
         return distance
-
-
-
-
 
 
 histdf=spark.read.csv("s3://finalproject1-a/project/part-00000-5c9dab29-f21f-4f32-821a-4c9d76f329e8-c000.csv",header=True)
@@ -88,8 +81,8 @@ df = spark.readStream \
     .option("kafka.sasl.mechanism", "PLAIN") \
     .option("kafka.sasl.jaas.config", 
             "org.apache.kafka.common.security.plain.PlainLoginModule required " + \
-            "username='NQUVTTMSN2ZERMOC' " + \
-            "password='H5D3zLCvpITwlG+erBnSp1uVtQkjYeZpFqoQ38XdO0lHymht4ny68cCZ7KT++S36';") \
+            "username='your username' " + \
+            "password='your password';") \
     .load()
 
 
