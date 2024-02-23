@@ -27,7 +27,6 @@ Resources:
     Properties:
       Name: MySparkStep
       ActionOnFailure: CONTINUE
-      JobFlowId: !Ref MyEMRCluster
       HadoopJarStep:
         Jar: command-runner.jar
         Args:
@@ -38,10 +37,8 @@ Resources:
           - org.apache.spark.deploy.Mysparkob
           - --packages
           - org.apache.spark:spark-sql-kafka-0-10_2.12:3.2.1
-          - --jars
-          - s3://finalproject1-a/mysql-connector-java-8.0.23.jar
           - s3://finalproject1-a/a.py
-      
+      JobFlowId: !Ref MyEMRCluster
 
   DataCrawler:
     Type: AWS::Glue::Crawler
@@ -53,5 +50,5 @@ Resources:
       DatabaseName: default
       Targets:
         S3Targets:
-          - Path: s3://finalproject1-b/sparkwrite/
+          - Path: s3://finalproject1-b/final.parquet
       Role: arn:aws:iam::185675419520:role/LabRole
