@@ -9,13 +9,14 @@ Resources:
         - Name: Spark
       Instances:
         MasterInstanceGroup:
-          InstanceCount: 1
+          InstanceCount: 1  
           InstanceType: m5.xlarge
+          Name: MASTER
         CoreInstanceGroup: 
           InstanceCount: 2
           InstanceType: m5.xlarge
-        Ec2SubnetIds: 
-          - subnet-024446bcf36b23364
+          Name: CORE
+        Ec2SubnetId: subnet-024446bcf36b23364  # Corrected property name
         Ec2KeyName: Ashishkey
       JobFlowRole: "EMR_EC2_DefaultRole"
       ServiceRole: "EMR_DefaultRole"
@@ -35,11 +36,10 @@ Resources:
           - --class
           - org.apache.spark.deploy.Mysparkob
           - --packages
-          - org.apache.spark:spark-sql-kafka-0-10_2.12:3.2.1
+          - "org.apache.spark:spark-sql-kafka-0-10_2.12:3.2.1"  # Added quotation marks around package name
           - --jars
-          - s3://finalproject1-a/mysql-connector-java-8.0.23.jar
-          - s3://finalproject1-a/a.py
-      
+          - "s3://finalproject1-a/mysql-connector-java-8.0.23.jar"  # Added quotation marks around jar path
+          - "s3://finalproject1-a/a.py"  # Added quotation marks around Python file path
 
   DataCrawler:
     Type: AWS::Glue::Crawler
@@ -51,5 +51,5 @@ Resources:
       DatabaseName: default
       Targets:
         S3Targets:
-          - Path: s3://finalproject1-b/sparkwrite/
-      Role: "arn:aws:iam::185675419520:role/LabRole"
+          - Path: "s3://finalproject1-b/sparkwrite/"  # Added quotation marks around S3 path
+      Role: "arn:aws:iam::185675419520:role/LabRole"  # Added quotation marks around IAM role ARN
