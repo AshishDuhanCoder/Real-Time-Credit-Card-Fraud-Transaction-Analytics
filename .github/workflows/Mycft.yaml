@@ -18,7 +18,7 @@ Resources:
           Name: CORE
         Ec2SubnetIds: 
           - subnet-024446bcf36b23364
-        Ec2KeyName: Ashishkey
+        Ec2KeyName: onekey
       JobFlowRole: "EMR_EC2_DefaultRole"
       ServiceRole: "EMR_DefaultRole"
           
@@ -34,9 +34,11 @@ Resources:
           - --deploy-mode
           - cluster
           - --class
-          - org.apache.spark.deploy.Mysparkob
+          - org.apache.spark.deploy.Mysparkob 
           - --packages
-          - org.apache.spark:spark-sql-kafka-0-10_2.12:3.2.1
+          - org.apache.spark:spark-sql-kafka-0-10_2.12:3.2.1 
+          - --jars
+          - s3://finalproject1-a/mysql-connector-java-8.0.23.jar 
           - s3://finalproject1-a/a.py
       JobFlowId: !Ref MyEMRCluster
 
